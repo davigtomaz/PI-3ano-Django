@@ -7,7 +7,7 @@ authors = [
     {name = "Davi Gabriel Tomaz", email = "davigabtomaz@gmail.com"},
 ]
 dependencies = [
-    "django>=4.2.3",
+    "django>=4.2.4",
     "djangorestframework>=3.14.0",
     "python-magic>=0.4.27",
     "Pillow>=10.0.0",
