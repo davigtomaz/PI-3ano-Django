@@ -7,6 +7,7 @@ from rest_framework.routers import DefaultRouter
 
 from livraria.views import AutorViewSet, CategoriaViewSet, EditoraViewSet, LivroViewSet
 from uploader.router import router as uploader_router
+from usuario.router import router as usuario_router
 
 router = DefaultRouter()
 router.register(r"autor", AutorViewSet)
@@ -18,7 +19,7 @@ router.register(r"livros", LivroViewSet)
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include(router.urls)),
-
+    path("api/usuario", include(usuario_router.urls)),
     path("api/media/", include(uploader_router.urls)),
 ]
 
