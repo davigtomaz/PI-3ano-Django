@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-o!a02d1u*3p(mn)8^)79=y1=9aah5cb9=qq+8#v%u9eru2q@qy
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -106,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # App Uploader settings
-MEDIA_URL = "http://localhost:8000/media/"
+MEDIA_URL = "http://191.52.55.130:19003/media/"
 MEDIA_ENDPOINT = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 FILE_UPLOAD_PERMISSIONS = 0o640
