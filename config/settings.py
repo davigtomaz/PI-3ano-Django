@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     "usuario",
     "rest_framework",
     "corsheaders",
+    'django.contrib.staticfiles',
+    'cloudinary_storage',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -144,13 +147,15 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
+if MODE in ["PRODUCTION", "MIGRATE"]:
+    CLOUDINARY_URL = os.getenv("CLOUDINARY_URL")
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+    STATIC_ROOT = os.path.join(BASE_DIR, "static")
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
