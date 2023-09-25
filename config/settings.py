@@ -4,6 +4,7 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
+
 MODE = os.getenv("MODE")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -11,8 +12,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG", "False")
-ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ["http://localhost:3000", "http://localhost:8000", "https://*.fl0.io/"]
+ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000",
+    "http://localhost:8000",
+    "https://*.fl0.io/",
+]
 
 # Application definition
 INSTALLED_APPS = [
@@ -27,14 +32,14 @@ INSTALLED_APPS = [
     "usuario",
     "rest_framework",
     "corsheaders",
-    'django.contrib.staticfiles',
-    'cloudinary_storage',
-    'cloudinary',
+    "django.contrib.staticfiles",
+    "cloudinary_storage",
+    "cloudinary",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -126,9 +131,11 @@ STATIC_URL = "/static/"
 
 if MODE in ["PRODUCTION", "MIGRATE"]:
     CLOUDINARY_URL = os.getenv("CLOUDINARY_URL")
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+    DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
     STATIC_ROOT = os.path.join(BASE_DIR, "static")
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    STATICFILES_STORAGE = (
+        "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    )
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
@@ -151,4 +158,6 @@ print(MODE, DATABASES)
 
 if MODE == "PRODUCTION":
     STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    STATICFILES_STORAGE = (
+        "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    )
