@@ -6,4 +6,4 @@ from uploader.models import Image
 class CategoriaSerializer(ModelSerializer):
     class Meta:
         model = Categoria
-        fields = "__all__"
+        fields = ("id", "nome")
