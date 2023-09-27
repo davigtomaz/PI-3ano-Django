@@ -5,4 +5,4 @@ class Usuario(models.Model):
     telefone = models.DecimalField(max_digits=11, decimal_places=0)
 
     def __str__(self):
-        return self.nome
+        return f"{self.nome}"
