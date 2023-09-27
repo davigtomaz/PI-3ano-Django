@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer, SlugRelatedField, CharField
+from rest_framework.serializers import ModelSerializer, SlugRelatedField, CharField, SerializerMethodField
 
 from livraria.models import Livro
 from uploader.models import Image
@@ -20,14 +20,19 @@ class LivroSerializer(ModelSerializer):
         fields = ("id", "titulo", "categoria", "editora", "capa", "capa_attachment_key")
 
 class LivroDetailSerializer(ModelSerializer):
-    class Meta:
-        model = Livro
-        fields = ("id", "titulo", "categoria", "editora" "capa", "capa_attachment_key")
     # capa = ImageSerializer(required=False)
     capa = CharField(source="capa.url")
+    class Meta:
+        model = Livro
+        fields = ("id", "titulo", "categoria", "editora", "capa")
 
 class LivroListSerializer(ModelSerializer):
     capa = CharField(source="capa.url")
+    # categoria = CategoriaItem(many=True)
+    categoria = SerializerMethodField()
     class Meta:
         model = Livro
         fields = ["id", "titulo", "categoria", "editora", "autores", "capa"]
+
+    def get_categoria(self, obj):
+        return [categoria.nome for categoria in obj.categoria.all()]
