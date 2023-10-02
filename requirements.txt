@@ -10,6 +10,7 @@ cloudinary==1.34.0
 django==4.2.5
 django-cloudinary-storage==0.3.0
 django-cors-headers==4.2.0
+django-extensions==3.2.3
 djangorestframework==3.14.0
 drf-spectacular==0.26.5
 gunicorn==21.2.0
@@ -20,6 +21,8 @@ jsonschema-specifications==2023.7.1
 packaging==23.1
 Pillow==10.0.1
 psycopg2-binary==2.9.7
+pydotplus==2.0.2
+pyparsing==3.1.1
 python-dotenv==1.0.0
 python-magic==0.4.27
 pytz==2023.3.post1

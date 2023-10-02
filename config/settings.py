@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "drf_spectacular",
+    "django_extensions",
     "livraria",
     "uploader",
     "usuario",
