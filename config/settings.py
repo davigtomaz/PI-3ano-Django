@@ -114,30 +114,27 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# App Uploader settings
-MEDIA_URL = "/media/"
+
+STATIC_URL = "/static/"
 MEDIA_ENDPOINT = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 FILE_UPLOAD_PERMISSIONS = 0o640
 
-# Internationalization
-# https://docs.djangoproject.com/en/4.2/topics/i18n/
+if MODE in ["PRODUCTION", "MIGRATE"]:
+    CLOUDINARY_URL = os.getenv("CLOUDINARY_URL")
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+    STATIC_ROOT = os.path.join(BASE_DIR, "static")
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    MEDIA_URL = '/media/' 
+else:    
+    MY_IP = os.getenv("MY_IP", "127.0.0.1")
+    MEDIA_URL = f"http://{MY_IP}:19003/media/"
 
+# Internationalization
 LANGUAGE_CODE = "pt-br"
 TIME_ZONE = "America/Sao_Paulo"
 USE_I18N = True
 USE_TZ = True
-
-STATIC_URL = "/static/"
-
-if MODE in ["PRODUCTION", "MIGRATE"]:
-    CLOUDINARY_URL = os.getenv("CLOUDINARY_URL")
-    DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
-    STATIC_ROOT = os.path.join(BASE_DIR, "static")
-    STATICFILES_STORAGE = (
-        "whitenoise.storage.CompressedManifestStaticFilesStorage"
-    )
-
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
@@ -155,10 +152,4 @@ SPECTACULAR_SETTINGS = {
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-print(MODE, DATABASES)
-
-if MODE == "PRODUCTION":
-    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-    STATICFILES_STORAGE = (
-        "whitenoise.storage.CompressedManifestStaticFilesStorage"
-    )
+print(MODE, MEDIA_URL, DATABASES)

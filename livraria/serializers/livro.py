@@ -17,14 +17,14 @@ class LivroSerializer(ModelSerializer):
 
     class Meta:
         model = Livro
-        fields = ("id", "titulo", "categoria", "editora", "capa", "capa_attachment_key")
+        fields = ("id", "titulo", "categoria", "editora", "autores", "capa", "capa_attachment_key")
 
 class LivroDetailSerializer(ModelSerializer):
     # capa = ImageSerializer(required=False)
     capa = CharField(source="capa.url")
     class Meta:
         model = Livro
-        fields = ("id", "titulo", "categoria", "editora", "capa")
+        fields = ("id", "titulo", "categoria", "editora", "autores" ,"capa")
 
 class LivroListSerializer(ModelSerializer):
     capa = CharField(source="capa.url")
