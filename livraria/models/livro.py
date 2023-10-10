@@ -5,7 +5,6 @@ from livraria.models import Autor, Categoria, Editora, Localização
 
 class Livro(models.Model):
     titulo = models.CharField(max_length=255)
-    
     categoria = models.ManyToManyField(Categoria,  related_name='livros')
     editora = models.ForeignKey(Editora, on_delete=models.PROTECT ,related_name='livros')
     autores = models.ManyToManyField(Autor,  related_name='livros')

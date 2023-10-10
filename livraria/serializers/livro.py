@@ -30,7 +30,7 @@ class LivroListSerializer(ModelSerializer):
     capa = CharField(source="capa.url")
     categoria = SerializerMethodField()
     autores = SerializerMethodField()
-    # editora = SerializerMethodField()
+    editora = CharField(source="editora.nome")
     class Meta:
         model = Livro
         fields = ["id", "titulo", "categoria", "editora", "autores", "localizacao" , "capa"]
@@ -41,5 +41,3 @@ class LivroListSerializer(ModelSerializer):
     def get_autores(self, obj):
         return [autores.nome for autores in obj.autores.all()]
     
-    # def get_editora(self, obj):
-    #     return [editora.nome for editora in obj.editora.all()]
