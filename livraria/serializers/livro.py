@@ -31,6 +31,7 @@ class LivroListSerializer(ModelSerializer):
     categoria = SerializerMethodField()
     autores = SerializerMethodField()
     editora = CharField(source="editora.nome")
+    localizacao = CharField(source="localizacao.nome")
     class Meta:
         model = Livro
         fields = ["id", "titulo", "categoria", "editora", "autores", "localizacao" , "capa"]
