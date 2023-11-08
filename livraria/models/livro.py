@@ -1,8 +1,9 @@
 from django.db import models
 from uploader.models import Image
-from livraria.models import Autor, Categoria, Editora, Localização
-
-
+from .autor import Autor
+from .categoria import Categoria
+from .editora import Editora
+from .localizacao import Localização
 class Livro(models.Model):
     titulo = models.CharField(max_length=255)
     categoria = models.ManyToManyField(Categoria,  related_name='livros')
