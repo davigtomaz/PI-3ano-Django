@@ -10,6 +10,7 @@ class Livro(models.Model):
     editora = models.ForeignKey(Editora, on_delete=models.PROTECT ,related_name='livros')
     autores = models.ManyToManyField(Autor,  related_name='livros')
     localizacao = models.ForeignKey(Localização, on_delete=models.PROTECT, related_name='livros')
+    
     capa = models.ForeignKey(
         Image,
         related_name="+",
