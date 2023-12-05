@@ -7,8 +7,8 @@ class EmprestimoSerializer(ModelSerializer):
     class Meta:
         model = Emprestimo
         fields = ("id", "nome", "contato", "inicio", "final","nome_livro")
-        depth = 2
         
+
 class EmprestimoDetailSerializer(ModelSerializer):
 
     class Meta:
